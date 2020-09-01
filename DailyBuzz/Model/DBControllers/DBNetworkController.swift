@@ -8,11 +8,11 @@
 
 import Foundation
 
-class NetworkManager {
+class DBNetworkController {
 	
 	//MARK: - Shared / global accessible property
 	
-	static let shared = NetworkManager()
+	static let shared = DBNetworkController()
 	
 	
 	//MARK: - Private Initializer
@@ -34,7 +34,8 @@ class NetworkManager {
 		
 		enum QueryParameter {
 			static let media = (name: "alt", value: "media")
-			static let token = (name: "token", value: "e36c1a14-25d9-4467-8383-a53f57ba6bfe")
+//			static let token = (name: "token", value: "e36c1a14-25d9-4467-8383-a53f57ba6bfe")
+			static let token = (name: "token", value: "") //force fail for error testing
         }
 		
 		case feed
@@ -68,21 +69,26 @@ class NetworkManager {
 	//MARK: - Networking
 	
 	//fetch json feed / file from remote server and
-    private func fetchRemoteDataFeed(completion: @escaping (URL?, Error?) -> Void) {
+    private func fetchRemoteDataFeed(completion: @escaping (Result<URL, DBError>) -> Void) {
         guard let url = Endpoint.feed.url else {
-            fatalError("Error! Failed to fetch remote json feed file. Feed url is missing.")
+			fatalError("DBFeedError! Feed url is missing")
         }
 
         let downloadTask = URLSession.shared.downloadTask(with: url) { (fileURL, response, error) in
 
+			//handle errors
+			guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+				completion(.failure(.httpError))
+				return
+			}
+			
             guard let fileURL = fileURL else {
-                completion(nil, error)
+				completion(.failure(.fileError))
                 return
             }
-
-            if let error = error {
-                print("Error! Failed to fetch remote feed / json file: \(error.localizedDescription)")
-                completion(nil, error)
+			
+            if let _ = error {
+				completion(.failure(.feedFetchError))
                 return
             }
 			
@@ -92,10 +98,10 @@ class NetworkManager {
 
                 let savedURL = documentsURL.appendingPathComponent(fileURL.lastPathComponent)
                 try FileManager.default.moveItem(at: fileURL, to: savedURL)
-                completion(savedURL, nil)
+				completion(.success(savedURL))
 
             } catch {
-                print("Error! Failed to save feed file: \(error)")
+				print(DBError.fileError)
             }
         }
 
@@ -104,29 +110,26 @@ class NetworkManager {
 	
 	
 	//get local / json feed file and parse
-    func fetchLocalJsonFeed(completion: @escaping (Result<[Item], Error>) -> Void) {
+    func fetchJsonFeed(completion: @escaping (Result<[DBItem], DBError>) -> Void) {
         
 		//trigger remote fetch request
-        fetchRemoteDataFeed { (url, error) in
+        fetchRemoteDataFeed { result in
+			
+			switch result {
+				case .success(let url):
+					
+				do {
+					 let data = try Data(contentsOf: url)
+					 let jsonFeed = try JSONDecoder().decode(DBFeed.self, from: data)
+					 completion(.success(jsonFeed.items))
 
-            if let error = error {
-                print("Error! Failed to get items: \(error.localizedDescription)")
-				completion(.failure(error))
-            }
-
-            if let url = url {
+				} catch {
+					 completion(.failure(.fileError))
+				}
 				
-				//return items
-                do {
-                    let data = try Data(contentsOf: url)
-                    let jsonFeed = try JSONDecoder().decode(Feed.self, from: data)
-					completion(.success(jsonFeed.items))
-
-               } catch {
-                   completion(.failure(error))
-                   print("Error! Could not create items: \(error.localizedDescription)")
-               }
-            }
+				case .failure(let error):
+				completion(.failure(error))
+			}
         }
     }
 }
