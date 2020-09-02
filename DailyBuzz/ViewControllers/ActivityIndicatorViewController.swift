@@ -13,7 +13,7 @@ class ActivityIndicatorViewController: UIViewController {
 
     override func loadView() {
         view = UIView()
-        view.backgroundColor = UIColor(white: 0, alpha: 0.3)
+        view.backgroundColor = UIColor(white: 0, alpha: 0.5)
 
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.startAnimating()

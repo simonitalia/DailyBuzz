@@ -33,19 +33,18 @@ extension UIViewController {
 	//MARK: - UIActivity Spinner
 	func activityIndicator(show: Bool) {
 	
-		//add activitySpinnerVC to parent vc
 		DispatchQueue.main.async { [weak self] in
 			guard let self = self else { return }
 			
+			//add activitySpinnerVC to parentVC
 			if show {
 				self.addChild(spinner)
 				spinner.view.frame = self.view.frame
 				self.view.addSubview(spinner.view)
 				spinner.didMove(toParent: self)
 				
-			//remove activitySpinnerVC
+			//remove activitySpinnerVC from parentVC
 			} else {
-				// then remove the spinner view controller
 				spinner.willMove(toParent: nil)
 				spinner.view.removeFromSuperview()
 				spinner.removeFromParent()
