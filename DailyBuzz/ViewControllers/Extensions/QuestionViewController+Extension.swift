@@ -9,17 +9,18 @@
 import Foundation
 
 extension QuestionViewController {
-	
+
 	//MARK: - Question Helpers
-	private func answerButtonTapped(with tag: Int) {
-		guard let question = currentQuestion else { return }
+	
+	internal func playerSubmittedAnswer(with index: Int) {
+		let isAnswerCorrect = currentQuestion.checkCorrectAnswerIndex(against: index)
 		
-		if tag == question.correctAnswerIndex {
-			
-			//correct answer
+		if isAnswerCorrect {
+			playerScore += 2
+		
 		} else {
-			//wrong answer
-			
+			guard playerScore != 0 else { return } //guard player score from going into negative
+			playerScore -= 1
 		}
 	}
 	
@@ -27,9 +28,7 @@ extension QuestionViewController {
 	internal func getNextQuestion() {
 		currentQuestion = questions?[nextQuestionIndex]
 		nextQuestionIndex += 1
-		print("Next Question index: \(nextQuestionIndex).")
 		updateUI()
-		
 	}
 }
 

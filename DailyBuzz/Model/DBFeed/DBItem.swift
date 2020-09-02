@@ -52,4 +52,13 @@ struct DBItem: Codable, Error {
 		
 		task.resume()
 	}
+	
+	
+	internal func checkCorrectAnswerIndex(against index: Int) -> Bool {
+		if correctAnswerIndex == index {
+			return true
+		} else {
+			return false
+		}
+	}
 }

@@ -23,7 +23,7 @@ class QuestionViewController: UIViewController {
 	
 	internal var nextQuestionIndex = 0
 	internal var currentQuestion: DBItem!
-	private var playerScore = 0 {
+	internal var playerScore = 0 {
 		didSet {
 			configurePlayerScoreLabel(with: playerScore)
 		}
@@ -43,6 +43,11 @@ class QuestionViewController: UIViewController {
 	//IB Actions
 	@IBAction func skipQuestionButtonTapped(_ sender: Any) {
 		getNextQuestion()
+	}
+	
+	
+	@IBAction func answerButtonTapped(_ sender: UIButton) {
+		playerSubmittedAnswer(with: sender.tag)
 	}
 	
 	
@@ -161,14 +166,14 @@ class QuestionViewController: UIViewController {
 
 	private func configurePlayerScoreLabel(with score: Int) {
 		
+		//convert score to string
 		let stringScore = String(score)
+		
+		//set string attrributes
 		let text = "+\(score) Points Coming Your Way!"
 		let attributedText = NSMutableAttributedString(string: text)
-		
 		let bold = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)]
-		
 		attributedText.setAttributes(bold, range: NSRange(location: 1, length: stringScore.count))
-		
 		pointsPossibleLabel.attributedText = attributedText
 	}
 	
@@ -197,7 +202,7 @@ class QuestionViewController: UIViewController {
 		}
 	}
 	
-
+	
 	private func configureSkipQuestionButton() {
 		skipQuestionButton.setTitle("Skip Question! I give up", for: .normal)
 		skipQuestionButton.setTitleColor(.white, for: .normal)
