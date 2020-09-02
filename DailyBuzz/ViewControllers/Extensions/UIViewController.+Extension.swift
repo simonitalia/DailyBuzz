@@ -8,9 +8,12 @@
 
 import UIKit
 
+fileprivate var spinner = ActivityIndicatorViewController()
+
 extension UIViewController {
 	
-	//MARK: - Shared UIAlertController
+	//MARK: - UIAlertController/s
+	
 	func presentAlert(title: String, message: String, completionHandler: Selector?) {
 		DispatchQueue.main.async {
 			let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -24,6 +27,29 @@ extension UIViewController {
 			}
 			
 			self.present(ac, animated: true)
+		}
+	}
+	
+	//MARK: - UIActivity Spinner
+	func activityIndicator(show: Bool) {
+	
+		//add activitySpinnerVC to parent vc
+		DispatchQueue.main.async { [weak self] in
+			guard let self = self else { return }
+			
+			if show {
+				self.addChild(spinner)
+				spinner.view.frame = self.view.frame
+				self.view.addSubview(spinner.view)
+				spinner.didMove(toParent: self)
+				
+			//remove activitySpinnerVC
+			} else {
+				// then remove the spinner view controller
+				spinner.willMove(toParent: nil)
+				spinner.view.removeFromSuperview()
+				spinner.removeFromParent()
+			}
 		}
 	}
 }

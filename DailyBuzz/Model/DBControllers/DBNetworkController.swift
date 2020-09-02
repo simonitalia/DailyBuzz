@@ -34,8 +34,9 @@ class DBNetworkController {
 		
 		enum QueryParameter {
 			static let media = (name: "alt", value: "media")
-//			static let token = (name: "token", value: "e36c1a14-25d9-4467-8383-a53f57ba6bfe")
-			static let token = (name: "token", value: "") //force fail for error testing
+			static let token = (name: "token", value: "e36c1a14-25d9-4467-8383-a53f57ba6bfe")
+//			static let token = (name: "token", value: "")
+				//force fail for error testing
         }
 		
 		case feed

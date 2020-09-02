@@ -12,6 +12,8 @@ class QuestionViewController: UIViewController {
 	
 	//MARK: - Local Properties
 	
+	private var spinner: ActivityIndicatorViewController!
+	
 	private var questions: [DBItem]? {
 		didSet {
 			print("Success! Questions fetched!")
@@ -25,12 +27,25 @@ class QuestionViewController: UIViewController {
 		super.viewDidLoad()
 
 		getGameQuestions()
+		configureVC()
+		
+	}
+	
+	func configureVC() {
+		
+		
+		
 	}
 	
 	
 	@objc func getGameQuestions() {
+		
+		activityIndicator(show: true)
+		
 		DBNetworkController.shared.fetchJsonFeed { [weak self] result in
 			guard let self = self else { return }
+			
+			self.activityIndicator(show: false)
 			
 			switch result {
 				case .success(let questions):

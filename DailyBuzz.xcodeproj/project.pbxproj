@@ -19,6 +19,7 @@
 		2A1319C824FDF1450019C649 /* DBFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1319C724FDF1450019C649 /* DBFeed.swift */; };
 		2A1319CD24FE09C00019C649 /* UIViewController.+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1319CC24FE09C00019C649 /* UIViewController.+Extension.swift */; };
 		2A1319D124FE2D810019C649 /* DBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1319D024FE2D810019C649 /* DBError.swift */; };
+		2A1319D424FF201D0019C649 /* ActivityIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1319D324FF201D0019C649 /* ActivityIndicatorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		2A1319C724FDF1450019C649 /* DBFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBFeed.swift; sourceTree = "<group>"; };
 		2A1319CC24FE09C00019C649 /* UIViewController.+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController.+Extension.swift"; sourceTree = "<group>"; };
 		2A1319D024FE2D810019C649 /* DBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBError.swift; sourceTree = "<group>"; };
+		2A1319D324FF201D0019C649 /* ActivityIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				2A1319AC24FDDE5D0019C649 /* QuestionViewController.swift */,
+				2A1319D324FF201D0019C649 /* ActivityIndicatorViewController.swift */,
 				2A1319CB24FE09550019C649 /* Extensions */,
 			);
 			path = ViewControllers;
@@ -99,8 +102,7 @@
 		2A1319BE24FDDEE10019C649 /* Views+UI */ = {
 			isa = PBXGroup;
 			children = (
-				2A1319AE24FDDE5D0019C649 /* Main.storyboard */,
-				2A1319B324FDDE5F0019C649 /* LaunchScreen.storyboard */,
+				2A1319D224FF1F970019C649 /* Storyboards */,
 			);
 			path = "Views+UI";
 			sourceTree = "<group>";
@@ -147,6 +149,15 @@
 				2A1319CC24FE09C00019C649 /* UIViewController.+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2A1319D224FF1F970019C649 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				2A1319AE24FDDE5D0019C649 /* Main.storyboard */,
+				2A1319B324FDDE5F0019C649 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +236,7 @@
 				2A1319AD24FDDE5D0019C649 /* QuestionViewController.swift in Sources */,
 				2A1319A924FDDE5D0019C649 /* AppDelegate.swift in Sources */,
 				2A1319AB24FDDE5D0019C649 /* SceneDelegate.swift in Sources */,
+				2A1319D424FF201D0019C649 /* ActivityIndicatorViewController.swift in Sources */,
 				2A1319C624FDF04B0019C649 /* DBItem.swift in Sources */,
 				2A1319C424FDEA7F0019C649 /* DataPersistenceManager.swift in Sources */,
 				2A1319CD24FE09C00019C649 /* UIViewController.+Extension.swift in Sources */,
