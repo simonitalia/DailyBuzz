@@ -36,7 +36,7 @@
                                     <constraint firstAttribute="height" constant="50" id="78F-He-hxx"/>
                                 </constraints>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GX1-l0-mep">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GX1-l0-mep">
                                 <rect key="frame" x="20" y="124" width="335" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="Usd-7H-bvM"/>
@@ -46,44 +46,65 @@
                                 <rect key="frame" x="177.5" y="214" width="20" height="20"/>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eSG-Gk-AuA">
-                                <rect key="frame" x="20" y="334" width="335" height="313"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="eSG-Gk-AuA">
+                                <rect key="frame" x="20" y="344" width="335" height="303"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygb-02-cSL">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+N Points Coming Your Way!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygb-02-cSL">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="h5Q-3X-Mkm"/>
+                                            <constraint firstAttribute="height" constant="25" id="h5Q-3X-Mkm"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a2u-xb-vqM">
-                                        <rect key="frame" x="0.0" y="66" width="335" height="2"/>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="a2u-xb-vqM">
+                                        <rect key="frame" x="0.0" y="39.5" width="335" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="NTM-cf-hoc"/>
+                                        </constraints>
+                                        <color key="progressTintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="trackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </progressView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSN-ON-kDj">
-                                        <rect key="frame" x="0.0" y="84.5" width="335" height="50"/>
+                                        <rect key="frame" x="0.0" y="79" width="335" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="3aQ-2a-a9P"/>
                                         </constraints>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKl-K9-g1t">
-                                        <rect key="frame" x="0.0" y="150.5" width="335" height="50"/>
+                                        <rect key="frame" x="0.0" y="144" width="335" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="tBN-qf-Bb3"/>
                                         </constraints>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhU-My-XwA">
-                                        <rect key="frame" x="0.0" y="217" width="335" height="50"/>
+                                        <rect key="frame" x="0.0" y="208.5" width="335" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="9Eu-HF-VfE"/>
                                         </constraints>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJH-Ri-mb4">
-                                        <rect key="frame" x="0.0" y="283" width="335" height="30"/>
+                                        <rect key="frame" x="0.0" y="273" width="335" height="30"/>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="vXp-4E-fWc"/>
                                         </constraints>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="skipQuestionButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A1x-iX-vCX"/>
                                         </connections>
@@ -100,7 +121,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GX1-l0-mep" secondAttribute="trailing" constant="20" id="9Tx-g8-Jcw"/>
                             <constraint firstItem="lQE-JO-G3s" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Gvd-fy-w2F"/>
                             <constraint firstItem="GX1-l0-mep" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="PVa-GY-Ajq"/>
-                            <constraint firstItem="eSG-Gk-AuA" firstAttribute="top" secondItem="GX1-l0-mep" secondAttribute="bottom" constant="10" id="S3i-wF-bk6"/>
+                            <constraint firstItem="eSG-Gk-AuA" firstAttribute="top" secondItem="GX1-l0-mep" secondAttribute="bottom" constant="20" id="S3i-wF-bk6"/>
                             <constraint firstItem="f5P-1b-3y4" firstAttribute="centerY" secondItem="GX1-l0-mep" secondAttribute="centerY" id="StZ-Vv-OHO"/>
                             <constraint firstItem="GX1-l0-mep" firstAttribute="top" secondItem="lQE-JO-G3s" secondAttribute="bottom" constant="10" id="qap-uh-mV3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lQE-JO-G3s" secondAttribute="trailing" constant="20" id="rxo-3D-Fy1"/>
@@ -112,7 +133,7 @@
                     <connections>
                         <outlet property="headlineImageActivityIndicator" destination="f5P-1b-3y4" id="bG5-rb-CeQ"/>
                         <outlet property="headlineImageView" destination="GX1-l0-mep" id="X3B-6V-aZw"/>
-                        <outlet property="playerTotalScoreProgressView" destination="a2u-xb-vqM" id="vwL-hm-D82"/>
+                        <outlet property="playerScoreProgressView" destination="a2u-xb-vqM" id="vwL-hm-D82"/>
                         <outlet property="pointsPossibleLabel" destination="ygb-02-cSL" id="jth-HO-jXA"/>
                         <outlet property="skipQuestionButton" destination="eJH-Ri-mb4" id="pQl-oR-mFc"/>
                         <outletCollection property="answerButtons" destination="kSN-ON-kDj" collectionClass="NSMutableArray" id="wP1-52-xcD"/>
@@ -122,7 +143,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="840.62968515742136"/>
+            <point key="canvasLocation" x="137" y="915"/>
+        </scene>
+        <!--Answer View Controller-->
+        <scene sceneID="jOr-fy-Ncy">
+            <objects>
+                <viewController storyboardIdentifier="AnswerVC" id="KBV-uB-RIc" customClass="AnswerViewController" customModule="DailyBuzz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GGO-GN-Rah">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="DU7-22-vvK"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qxq-2W-2Uw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RK4-ff-83P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1023" y="916"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Str-NH-OX1">

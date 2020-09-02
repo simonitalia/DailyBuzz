@@ -23,6 +23,11 @@ class QuestionViewController: UIViewController {
 	
 	internal var nextQuestionIndex = 0
 	internal var currentQuestion: DBItem!
+	private var playerScore = 0 {
+		didSet {
+			configurePlayerScoreLabel(with: playerScore)
+		}
+	}
 	
 	
 	//MARK: - Storyboard
@@ -31,7 +36,7 @@ class QuestionViewController: UIViewController {
 	@IBOutlet weak var headlineImageView: UIImageView!
 	@IBOutlet weak var headlineImageActivityIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var pointsPossibleLabel: UILabel!
-	@IBOutlet weak var playerTotalScoreProgressView: UIProgressView!
+	@IBOutlet weak var playerScoreProgressView: UIProgressView!
 	@IBOutlet var answerButtons: [UIButton]!
 	@IBOutlet weak var skipQuestionButton: UIButton!
 	
@@ -41,20 +46,23 @@ class QuestionViewController: UIViewController {
 	}
 	
 	
-	
-	
 	//MARK: - View Lifecycle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		getGameQuestions()
-		configureUserInteraction(to: false)
+		hideViews(true)
 	}
 	
 	
 	//MARK: - VC Setup
-	private func configureUserInteraction(to enabled: Bool) {
-		view.isUserInteractionEnabled = enabled
+	private func hideViews(_ hide: Bool) {
+		view.isUserInteractionEnabled = !hide
+		
+		pointsPossibleLabel.isHidden = hide
+		playerScoreProgressView.isHidden = hide
+		answerButtons.forEach( { $0.isHidden = hide } )
+		skipQuestionButton.isHidden = hide
 	}
 	
 	
@@ -76,14 +84,20 @@ class QuestionViewController: UIViewController {
 		}
 	}
 	
-	//MARK: - UI
+	//MARK: - UI Configuration
 	
 	private func configureUI() {
 		DispatchQueue.main.async { [weak self] in
 			guard let self = self else { return }
+			
+			//configure UI elements
 			self.configureNavigationBar()
-			self.configurePointsPossibleLabel()
+			self.configureHeadlineImageView()
+			self.configurePlayerTotalScoreProgressView()
+			self.configurePlayerScoreLabel(with: 0)
 			self.configureSkipQuestionButton()
+			
+			//load question
 			self.getNextQuestion()
 		}
 	}
@@ -92,7 +106,7 @@ class QuestionViewController: UIViewController {
 	internal func updateUI() {
 		DispatchQueue.main.async { [weak self] in
 			guard let self = self else { return }
-			self.configureHeadlineImageView()
+			self.getQuestionHeadlineImage()
 			self.congifureAnswerButtons()
 		}
 	}
@@ -100,6 +114,11 @@ class QuestionViewController: UIViewController {
 	
 	private func configureNavigationBar() {
 		title = "Daily Buzz"
+	}
+	
+	
+	private func configureHeadlineImageView() {
+		headlineImageView.layer.cornerRadius = 15
 	}
 	
 	
@@ -115,7 +134,7 @@ class QuestionViewController: UIViewController {
 	}
 	
 	
-	@objc private func configureHeadlineImageView() {
+	@objc private func getQuestionHeadlineImage() {
 		
 		//start activity view
 		headlineActivityIndicator(show: true)
@@ -130,18 +149,33 @@ class QuestionViewController: UIViewController {
 				case .success(let image):
 					DispatchQueue.main.async {
 						self.headlineImageView.image = image
-						self.configureUserInteraction(to: true)
+						self.hideViews(false)
 				}
 				
 				case .failure(let error):
-					self.presentAlert(title: "Headline Image Download Failed!", message: error.rawValue, completionHandler: #selector(self.configureHeadlineImageView))
+					self.presentAlert(title: "Headline Image Download Failed!", message: error.rawValue, completionHandler: #selector(self.getQuestionHeadlineImage))
 			}
 		}
 	}
 	
+
+	private func configurePlayerScoreLabel(with score: Int) {
+		
+		let stringScore = String(score)
+		let text = "+\(score) Points Coming Your Way!"
+		let attributedText = NSMutableAttributedString(string: text)
+		
+		let bold = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)]
+		
+		attributedText.setAttributes(bold, range: NSRange(location: 1, length: stringScore.count))
+		
+		pointsPossibleLabel.attributedText = attributedText
+	}
 	
-	private func configurePointsPossibleLabel() {
-		pointsPossibleLabel.text = "+2 Points Coming Your Way!"
+	
+	private func configurePlayerTotalScoreProgressView() {
+		playerScoreProgressView.trackTintColor = .white
+		playerScoreProgressView.progressTintColor = .systemGreen
 	}
 	
 	
@@ -150,8 +184,8 @@ class QuestionViewController: UIViewController {
 		
 		//configure button presentation
 		answerButtons.forEach({
-			$0.setTitleColor(.black, for: .normal)
-			$0.backgroundColor = .white
+			$0.setTitleColor(.white, for: .normal)
+			$0.backgroundColor = .systemPurple
 			$0.layer.cornerRadius = 5
 		})
 		
@@ -163,11 +197,11 @@ class QuestionViewController: UIViewController {
 		}
 	}
 	
-	
+
 	private func configureSkipQuestionButton() {
 		skipQuestionButton.setTitle("Skip Question! I give up", for: .normal)
 		skipQuestionButton.setTitleColor(.white, for: .normal)
-		skipQuestionButton.backgroundColor = .systemGray
+		skipQuestionButton.backgroundColor = .darkGray
 		skipQuestionButton.layer.cornerRadius = 5
 	}
 }
