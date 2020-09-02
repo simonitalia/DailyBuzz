@@ -8,12 +8,14 @@
 
 import UIKit
 
+//MARK: - Game Logic Methods
+
 extension QuestionViewController {
 	
 	//MARK: -  Player Score Helpers
 	
 	internal func playerSubmittedAnswer(with index: Int) {
-		let isAnswerCorrect = currentQuestion.checkCorrectAnswerIndex(against: index)
+		let isAnswerCorrect = question.checkCorrectAnswerIndex(against: index)
 		
 		if isAnswerCorrect {
 			playerScore += 2
@@ -39,10 +41,9 @@ extension QuestionViewController {
 	}
 	
 	
-	internal func updatePlayerProgressBar(with score: Int) {
+	internal func updatePlayerProgressBar(with currentQuestionIndex: Int) {
 		guard let questions = questions else { return }
-		let maxPossibleScore = Float(questions.count * 2)  //total Qs * max points
-		let progressValue = Float(score) / maxPossibleScore
+		let progressValue = Float(currentQuestionIndex) / Float(questions.count)
 		playerScoreProgressView.progress = progressValue
 	}
 	
@@ -50,9 +51,20 @@ extension QuestionViewController {
 	//MARK: - Question Helpers
 	
 	internal func getNextQuestion() {
-		currentQuestion = questions?[nextQuestionIndex]
-		nextQuestionIndex += 1
+		question = questions?[questionIndex]
+		questionIndex += 1
 		updateUI()
+	}
+	
+	
+	//MARK: - UI Helpers
+	
+	private func updateUI() {
+		DispatchQueue.main.async { [weak self] in
+			guard let self = self else { return }
+			self.getQuestionHeadlineImage()
+			self.congifureAnswerButtons()
+		}
 	}
 }
 

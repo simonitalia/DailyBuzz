@@ -15,23 +15,28 @@ class QuestionViewController: UIViewController {
 	private var spinner: ActivityIndicatorViewController!
 	
 	//question tracking
+	internal var question: DBItem!
+	
 	internal var questions: [DBItem]? {
 		didSet {
 			configureUI()
 		}
 	}
 	
-	internal var nextQuestionIndex = 0
-	internal var currentQuestion: DBItem!
+	internal var questionIndex = 0  {
+	   didSet {
+		   updatePlayerProgressBar(with: questionIndex)
+	   }
+	}
+	
 	internal var playerScore = 0 {
 		didSet {
 			updatePlayerScoreLabel(with: playerScore)
-			updatePlayerProgressBar(with: playerScore)
 		}
 	}
 	
 	
-	//MARK: - Storyboard
+	//MARK: - Storyboard IB Outlets / Actions
 	
 	//IB Outlets
 	@IBOutlet weak var headlineImageView: UIImageView!
@@ -52,7 +57,7 @@ class QuestionViewController: UIViewController {
 	}
 	
 	
-	//MARK: - View Lifecycle
+	//MARK: - UIView Lifecycle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -61,16 +66,7 @@ class QuestionViewController: UIViewController {
 	}
 	
 	
-	//MARK: - VC Setup
-	private func hideViews(_ hide: Bool) {
-		view.isUserInteractionEnabled = !hide
-		
-		pointsPossibleLabel.isHidden = hide
-		playerScoreProgressView.isHidden = hide
-		answerButtons.forEach( { $0.isHidden = hide } )
-		skipQuestionButton.isHidden = hide
-	}
-	
+	//MARK: - UIViewController / UI Configuration
 	
 	@objc func getGameQuestions() {
 		
@@ -90,8 +86,20 @@ class QuestionViewController: UIViewController {
 		}
 	}
 	
-	//MARK: - VC / UI Configuration
 	
+	private func hideViews(_ hide: Bool) {
+		view.isUserInteractionEnabled = !hide
+		
+		pointsPossibleLabel.isHidden = hide
+		playerScoreProgressView.isHidden = hide
+		answerButtons.forEach( { $0.isHidden = hide } )
+		skipQuestionButton.isHidden = hide
+	}
+	
+	
+	//MARK: - Configure UI
+	
+	//triggered after Questions are fetched
 	private func configureUI() {
 		DispatchQueue.main.async { [weak self] in
 			guard let self = self else { return }
@@ -105,15 +113,6 @@ class QuestionViewController: UIViewController {
 			
 			//load question
 			self.getNextQuestion()
-		}
-	}
-	
-	
-	internal func updateUI() {
-		DispatchQueue.main.async { [weak self] in
-			guard let self = self else { return }
-			self.getQuestionHeadlineImage()
-			self.congifureAnswerButtons()
 		}
 	}
 	
@@ -140,15 +139,15 @@ class QuestionViewController: UIViewController {
 	}
 	
 	
-	@objc private func getQuestionHeadlineImage() {
+	@objc internal func getQuestionHeadlineImage() {
 		
 		//start activity view
 		headlineActivityIndicator(show: true)
 		
 		//fecth image
-		let imageUrl = currentQuestion.imageUrl
+		let imageUrl = question.imageUrl
 		
-		currentQuestion?.fetchItemHeadlineImage(from: imageUrl) { [unowned self] (result) in
+		question?.fetchItemHeadlineImage(from: imageUrl) { [unowned self] (result) in
 			self.headlineActivityIndicator(show: false)
 			
 			switch result {
@@ -172,8 +171,8 @@ class QuestionViewController: UIViewController {
 	}
 	
 	
-	private func congifureAnswerButtons() {
-		guard let question = currentQuestion else { return }
+	internal func congifureAnswerButtons() {
+		guard let question = question else { return }
 		
 		//configure button presentation
 		answerButtons.forEach({
