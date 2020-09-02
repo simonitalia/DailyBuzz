@@ -15,38 +15,56 @@ class QuestionViewController: UIViewController {
 	private var spinner: ActivityIndicatorViewController!
 	
 	//question tracking
-	private var currentQuestionIndex = 0
-	private var questions: [DBItem]? {
+	internal var questions: [DBItem]? {
 		didSet {
-			updateUI()
+			configureUI()
 		}
 	}
 	
-	private var question: DBItem!
+	internal var nextQuestionIndex = 0
+	internal var currentQuestion: DBItem!
 	
-	//MARK: - IB Outlets
+	
+	//MARK: - Storyboard
+	
+	//IB Outlets
 	@IBOutlet weak var headlineImageView: UIImageView!
+	@IBOutlet weak var headlineImageActivityIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var pointsPossibleLabel: UILabel!
 	@IBOutlet weak var playerTotalScoreProgressView: UIProgressView!
 	@IBOutlet var answerButtons: [UIButton]!
 	@IBOutlet weak var skipQuestionButton: UIButton!
+	
+	//IB Actions
+	@IBAction func skipQuestionButtonTapped(_ sender: Any) {
+		getNextQuestion()
+	}
+	
+	
+	
 	
 	//MARK: - View Lifecycle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		getGameQuestions()
+		configureUserInteraction(to: false)
 	}
+	
+	
+	//MARK: - VC Setup
+	private func configureUserInteraction(to enabled: Bool) {
+		view.isUserInteractionEnabled = enabled
+	}
+	
 	
 	@objc func getGameQuestions() {
 		
 		activityIndicator(show: true)
 		
-		DBNetworkController.shared.fetchJsonFeed { [weak self] result in
-			guard let self = self else { return }
-			
+		DBNetworkController.shared.fetchJsonFeed { [unowned self] result in
 			self.activityIndicator(show: false)
-			
+	
 			switch result {
 				case .success(let questions):
 					self.questions = questions
@@ -58,62 +76,82 @@ class QuestionViewController: UIViewController {
 		}
 	}
 	
-	//MARK: - UI Configuration
+	//MARK: - UI
 	
-	private func updateUI() {
-		configureCurrentQuestion()
-		
+	private func configureUI() {
 		DispatchQueue.main.async { [weak self] in
 			guard let self = self else { return }
 			self.configureNavigationBar()
-			self.configurePointsPossileLabel()
-			self.congifureAnswerButtons()
+			self.configurePointsPossibleLabel()
 			self.configureSkipQuestionButton()
+			self.getNextQuestion()
 		}
 	}
 	
 	
-	private func configureCurrentQuestion() {
-		question = questions?[currentQuestionIndex]
+	internal func updateUI() {
+		DispatchQueue.main.async { [weak self] in
+			guard let self = self else { return }
+			self.configureHeadlineImageView()
+			self.congifureAnswerButtons()
+		}
 	}
 	
 	
 	private func configureNavigationBar() {
-		let barButtonItems = [UILabel(), UILabel()]
+		title = "Daily Buzz"
+	}
+	
+	
+	private func headlineActivityIndicator(show: Bool) {
 		
-		for (index, barButtonItem) in barButtonItems.enumerated() {
-			if index == 0 {
-				barButtonItem.text = "Guess this headline!"
-				barButtonItem.textAlignment = .left
-				self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: barButtonItem)
-			} else {
-				barButtonItem.text = "Entertainment"
-				barButtonItem.textAlignment = .right
-				self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: barButtonItem)
+		DispatchQueue.main.async { [weak self] in
+			guard let self = self else { return }
+			
+			self.headlineImageActivityIndicator.isHidden = !show
+			show ? self.headlineImageActivityIndicator.startAnimating() : self.headlineImageActivityIndicator.stopAnimating()
+			show ? self.view.bringSubviewToFront(self.headlineImageActivityIndicator) : self.view.sendSubviewToBack(self.headlineImageActivityIndicator)
+		}
+	}
+	
+	
+	@objc private func configureHeadlineImageView() {
+		
+		//start activity view
+		headlineActivityIndicator(show: true)
+		
+		//fecth image
+		let imageUrl = currentQuestion.imageUrl
+		
+		currentQuestion?.fetchItemHeadlineImage(from: imageUrl) { [unowned self] (result) in
+			self.headlineActivityIndicator(show: false)
+			
+			switch result {
+				case .success(let image):
+					DispatchQueue.main.async {
+						self.headlineImageView.image = image
+						self.configureUserInteraction(to: true)
+				}
+				
+				case .failure(let error):
+					self.presentAlert(title: "Headline Image Download Failed!", message: error.rawValue, completionHandler: #selector(self.configureHeadlineImageView))
 			}
 		}
 	}
 	
 	
-	private func configureHeadlineImageView() {
-		
-		//start activity view
-		
-		
-	}
-	
-	
-	private func configurePointsPossileLabel() {
+	private func configurePointsPossibleLabel() {
 		pointsPossibleLabel.text = "+2 Points Coming Your Way!"
 	}
 	
+	
 	private func congifureAnswerButtons() {
-		guard let question = question else { return }
+		guard let question = currentQuestion else { return }
 		
 		//configure button presentation
 		answerButtons.forEach({
-			$0.setTitleColor(.white, for: .normal)
-			$0.backgroundColor = .systemBlue
+			$0.setTitleColor(.black, for: .normal)
+			$0.backgroundColor = .white
 			$0.layer.cornerRadius = 5
 		})
 		
@@ -131,18 +169,5 @@ class QuestionViewController: UIViewController {
 		skipQuestionButton.setTitleColor(.white, for: .normal)
 		skipQuestionButton.backgroundColor = .systemGray
 		skipQuestionButton.layer.cornerRadius = 5
-	}
-	
-	
-	private func answerButtonTapped(with tag: Int) {
-		guard let question = question else { return }
-		
-		if tag == question.correctAnswerIndex {
-			
-			//correct answer
-		} else {
-			//wrong answer
-			
-		}
 	}
 }

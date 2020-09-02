@@ -6,7 +6,7 @@
 //  Copyright © 2020 SDI Group Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class DBNetworkController {
 	
@@ -16,6 +16,7 @@ class DBNetworkController {
 	
 	
 	//MARK: - Private Initializer
+	
     private init() {} //guard external initalization
 	
 	

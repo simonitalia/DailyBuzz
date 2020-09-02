@@ -8,7 +8,7 @@
 
 import UIKit
 
-fileprivate var spinner = ActivityIndicatorViewController()
+fileprivate var activityInidicatorVC = ActivityIndicatorViewController()
 
 extension UIViewController {
 	
@@ -38,16 +38,16 @@ extension UIViewController {
 			
 			//add activitySpinnerVC to parentVC
 			if show {
-				self.addChild(spinner)
-				spinner.view.frame = self.view.frame
-				self.view.addSubview(spinner.view)
-				spinner.didMove(toParent: self)
+				self.addChild(activityInidicatorVC)
+				activityInidicatorVC.view.frame = self.view.frame
+				self.view.addSubview(activityInidicatorVC.view)
+				activityInidicatorVC.didMove(toParent: self)
 				
 			//remove activitySpinnerVC from parentVC
 			} else {
-				spinner.willMove(toParent: nil)
-				spinner.view.removeFromSuperview()
-				spinner.removeFromParent()
+				activityInidicatorVC.willMove(toParent: nil)
+				activityInidicatorVC.view.removeFromSuperview()
+				activityInidicatorVC.removeFromParent()
 			}
 		}
 	}
