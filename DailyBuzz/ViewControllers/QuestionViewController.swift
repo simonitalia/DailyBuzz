@@ -25,7 +25,8 @@ class QuestionViewController: UIViewController {
 	internal var currentQuestion: DBItem!
 	internal var playerScore = 0 {
 		didSet {
-			configurePlayerScoreLabel(with: playerScore)
+			updatePlayerScoreLabel(with: playerScore)
+			updatePlayerProgressBar(with: playerScore)
 		}
 	}
 	
@@ -89,7 +90,7 @@ class QuestionViewController: UIViewController {
 		}
 	}
 	
-	//MARK: - UI Configuration
+	//MARK: - VC / UI Configuration
 	
 	private func configureUI() {
 		DispatchQueue.main.async { [weak self] in
@@ -98,8 +99,8 @@ class QuestionViewController: UIViewController {
 			//configure UI elements
 			self.configureNavigationBar()
 			self.configureHeadlineImageView()
-			self.configurePlayerTotalScoreProgressView()
-			self.configurePlayerScoreLabel(with: 0)
+			self.configurePlayerScoreProgressView()
+			self.updatePlayerScoreLabel(with: 0)
 			self.configureSkipQuestionButton()
 			
 			//load question
@@ -164,21 +165,8 @@ class QuestionViewController: UIViewController {
 	}
 	
 
-	private func configurePlayerScoreLabel(with score: Int) {
-		
-		//convert score to string
-		let stringScore = String(score)
-		
-		//set string attrributes
-		let text = "+\(score) Points Coming Your Way!"
-		let attributedText = NSMutableAttributedString(string: text)
-		let bold = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)]
-		attributedText.setAttributes(bold, range: NSRange(location: 1, length: stringScore.count))
-		pointsPossibleLabel.attributedText = attributedText
-	}
-	
-	
-	private func configurePlayerTotalScoreProgressView() {
+	private func configurePlayerScoreProgressView() {
+		playerScoreProgressView.progress = 0
 		playerScoreProgressView.trackTintColor = .white
 		playerScoreProgressView.progressTintColor = .systemGreen
 	}
