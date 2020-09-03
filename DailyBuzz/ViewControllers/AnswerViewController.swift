@@ -35,6 +35,7 @@ class AnswerViewController: UIViewController {
 	
 	//IB Actions
 	@IBAction func readArticleButtonTapped(_ sender: UIButton) {
+		loadWebsite(for: headlineAnswer.storyUrl)
 	}
 	
 	@IBAction func getQuestionButtonTapped(_ sender: UIButton) {
@@ -43,13 +44,9 @@ class AnswerViewController: UIViewController {
 	}
 	
 	@IBAction func leaderboardButtonTapped(_ sender: UIButton) {
+		let urlString = "http://www.dailytelegraph.com.au/sport"
+		loadWebsite(for: urlString)
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	//MARK: - View Lifecycyle

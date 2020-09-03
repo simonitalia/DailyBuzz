@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 fileprivate var activityInidicatorVC = ActivityIndicatorViewController()
 
@@ -51,4 +52,13 @@ extension UIViewController {
 			}
 		}
 	}
+	
+	//MARK: Open Load Website
+	func loadWebsite(for urlString: String) {
+        DispatchQueue.main.async { [unowned self] in
+			let url = urlString.convertStringUrlToHTTPS()
+            let safariVC = SFSafariViewController(url: url)
+            self.present(safariVC, animated: true, completion: nil)
+        }
+    }
 }
