@@ -53,7 +53,12 @@ class AnswerViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		configureplayerScoreLabel()
+		configureHeadlineImageView()
+		configureHeadlineLabel()
+		configureReadArticleButton()
+		configureGetQuestionButton()
+		configureLeaderboardButton()
     }
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -61,4 +66,60 @@ class AnswerViewController: UIViewController {
 		delegate.getQuestion()
 	}
 	
+	
+	//MARK: - UI Setup
+	
+	private func configureplayerScoreLabel() {
+		
+		//configure text
+		let stringScore = String(playerScore)
+		let text: String = {
+			isAnswerCorrect ? "✓\nYou Have\n\(stringScore) Points" : "X\nYou Have\n\(stringScore) Points"
+		}()
+		
+		let attributedText = text.convertToAttributedText(size: 20, location: 11, length: stringScore.count)
+		playerScoreLabel.attributedText = attributedText
+		
+		//configure label
+		playerScoreLabel.layer.cornerRadius = playerScoreLabel.frame.width / 2
+		playerScoreLabel.layer.borderWidth = 3
+		playerScoreLabel.layer.backgroundColor = UIColor.systemGreen.cgColor
+		playerScoreLabel.layer.borderColor = UIColor.white.cgColor
+		playerScoreLabel.textAlignment = .center
+	}
+	
+	
+	private func configureHeadlineImageView() {
+		headlineImageView.image = headlineAnswer.headlineImage
+	}
+	
+	
+	private func configureHeadlineLabel() {
+		headlineLabel.text = headlineAnswer.headline
+	}
+	
+	
+	private func configureReadArticleButton() {
+		readArticleButton.setTitle("Read Article >", for: .normal)
+		readArticleButton.layer.cornerRadius = Constants.Button.cornerRadius
+	}
+	
+	
+	private func configureGetQuestionButton() {
+		getQuestionButton.setTitle("Next Question", for: .normal)
+		getQuestionButton.layer.cornerRadius = Constants.Button.cornerRadius
+	}
+	
+	
+	private func configureLeaderboardButton() {
+		
+		let text = "How am I doing in the Leaderboards?"
+		let leaderboardsString = "Leaderboards"
+		let attributedText = text.convertToAttributedText(size: 16, location: 22, length: leaderboardsString.count)
+		attributedText.addAttribute(.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: text.count))
+		leaderboardButton.setAttributedTitle(attributedText, for: .normal)
+		
+		//view
+		leaderboardButton.layer.cornerRadius = Constants.Button.cornerRadius
+	}
 }

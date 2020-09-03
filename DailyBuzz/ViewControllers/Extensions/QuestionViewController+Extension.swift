@@ -36,9 +36,7 @@ extension QuestionViewController {
 		
 		//set string attrributes
 		let text = "+\(score) Points Coming Your Way!"
-		let attributedText = NSMutableAttributedString(string: text)
-		let bold = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)]
-		attributedText.setAttributes(bold, range: NSRange(location: 1, length: stringScore.count))
+		let attributedText = text.convertToAttributedText(size: 20, location: 1, length: stringScore.count)
 		pointsPossibleLabel.attributedText = attributedText
 	}
 	
@@ -82,7 +80,7 @@ extension QuestionViewController {
 		vc.headlineAnswer = createHeadlineAnswer()
 		vc.playerScore = playerScore
 		vc.isAnswerCorrect = isCorrect
-		vc.delegate = self //set self ass delegate to fetch new Qn on vc dismiss
+		vc.delegate = self //set self as delegate to fetch new Qn on vc dismiss
 			
 		//presentVC
 		present(vc, animated: true, completion: nil)
@@ -99,4 +97,3 @@ extension QuestionViewController: AnswerViewControllerDelegate {
 		updateUI()
 	}
 }
-

@@ -24,7 +24,7 @@ struct DBItem: Codable, Error {
 	
 	func fetchItemHeadlineImage(from urlString: String, completion: @escaping (Result<UIImage, DBError>) -> Void) {
 		
-		let url = urlString.convertStringUrlToHTTPS()
+		let url = urlString.convertStringUrlToHttpsUrl()
 		let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
 
 			//handles errors

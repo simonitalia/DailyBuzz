@@ -47,6 +47,7 @@ class QuestionViewController: UIViewController {
 	//MARK: - Storyboard IB Outlets / Actions
 	
 	//IB Outlets
+	
 	@IBOutlet weak var headlineImageView: UIImageView!
 	@IBOutlet weak var headlineImageActivityIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var pointsPossibleLabel: UILabel!
@@ -74,7 +75,7 @@ class QuestionViewController: UIViewController {
 	}
 	
 	
-	//MARK: - UIViewController / UI Configuration
+	//MARK: - Initial VC Setup
 	
 	@objc func getGameQuestions() {
 		
@@ -96,8 +97,6 @@ class QuestionViewController: UIViewController {
 	
 	
 	private func hideViews(_ hide: Bool) {
-		view.isUserInteractionEnabled = !hide
-		
 		pointsPossibleLabel.isHidden = hide
 		playerScoreProgressView.isHidden = hide
 		answerButtons.forEach( { $0.isHidden = hide } )
@@ -105,7 +104,7 @@ class QuestionViewController: UIViewController {
 	}
 	
 	
-	//MARK: - Configure UI
+	//MARK: - UI Setup
 	
 	//triggered after Questions are fetched
 	private func configureUI() {
@@ -118,6 +117,7 @@ class QuestionViewController: UIViewController {
 			self.configurePlayerScoreProgressView()
 			self.updatePlayerScoreLabel(with: 0)
 			self.configureSkipQuestionButton()
+			self.hideViews(false) //show views
 			
 			//get question
 			self.getQuestion()
@@ -131,7 +131,7 @@ class QuestionViewController: UIViewController {
 	
 	
 	private func configureHeadlineImageView() {
-		headlineImageView.layer.cornerRadius = 15
+		headlineImageView.layer.cornerRadius = Constants.ImageView.cornerRadius
 	}
 	
 	
@@ -162,7 +162,7 @@ class QuestionViewController: UIViewController {
 				case .success(let image):
 					DispatchQueue.main.async {
 						self.headlineImageView.image = image
-						self.hideViews(false)
+						self.view.isUserInteractionEnabled = true //enable user interactiono
 				}
 				
 				case .failure(let error):
@@ -186,7 +186,7 @@ class QuestionViewController: UIViewController {
 		answerButtons.forEach({
 			$0.setTitleColor(.white, for: .normal)
 			$0.backgroundColor = .systemPurple
-			$0.layer.cornerRadius = 5
+			$0.layer.cornerRadius = Constants.Button.cornerRadius
 		})
 		
 		
@@ -202,8 +202,6 @@ class QuestionViewController: UIViewController {
 		skipQuestionButton.setTitle("Skip Question! I give up", for: .normal)
 		skipQuestionButton.setTitleColor(.white, for: .normal)
 		skipQuestionButton.backgroundColor = .darkGray
-		skipQuestionButton.layer.cornerRadius = 5
+		skipQuestionButton.layer.cornerRadius = Constants.Button.cornerRadius
 	}
-	
-	
 }

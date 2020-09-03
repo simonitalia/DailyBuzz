@@ -32,6 +32,7 @@ extension UIViewController {
 	}
 	
 	//MARK: - UIActivity Spinner
+	
 	func activityIndicator(show: Bool) {
 	
 		DispatchQueue.main.async { [weak self] in
@@ -56,7 +57,7 @@ extension UIViewController {
 	//MARK: Open Load Website
 	func loadWebsite(for urlString: String) {
         DispatchQueue.main.async { [unowned self] in
-			let url = urlString.convertStringUrlToHTTPS()
+			let url = urlString.convertStringUrlToHttpsUrl()
             let safariVC = SFSafariViewController(url: url)
             self.present(safariVC, animated: true, completion: nil)
         }
