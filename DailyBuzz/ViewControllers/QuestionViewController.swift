@@ -50,7 +50,7 @@ class QuestionViewController: UIViewController {
 	
 	@IBOutlet weak var headlineImageView: UIImageView!
 	@IBOutlet weak var headlineImageActivityIndicator: UIActivityIndicatorView!
-	@IBOutlet weak var pointsPossibleLabel: UILabel!
+	@IBOutlet weak var playerPointsLabel: UILabel!
 	@IBOutlet weak var playerScoreProgressView: UIProgressView!
 	@IBOutlet var answerButtons: [UIButton]!
 	@IBOutlet weak var skipQuestionButton: UIButton!
@@ -97,7 +97,8 @@ class QuestionViewController: UIViewController {
 	
 	
 	private func hideViews(_ hide: Bool) {
-		pointsPossibleLabel.isHidden = hide
+		headlineImageView.isHidden = hide
+		playerPointsLabel.isHidden = hide
 		playerScoreProgressView.isHidden = hide
 		answerButtons.forEach( { $0.isHidden = hide } )
 		skipQuestionButton.isHidden = hide

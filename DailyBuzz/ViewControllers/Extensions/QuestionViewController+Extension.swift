@@ -37,7 +37,7 @@ extension QuestionViewController {
 		//set string attrributes
 		let text = "+\(score) Points Coming Your Way!"
 		let attributedText = text.convertToAttributedText(size: 20, location: 1, length: stringScore.count)
-		pointsPossibleLabel.attributedText = attributedText
+		playerPointsLabel.attributedText = attributedText
 	}
 	
 	
