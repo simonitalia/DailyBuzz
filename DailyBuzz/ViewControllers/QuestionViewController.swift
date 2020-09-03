@@ -208,4 +208,6 @@ class QuestionViewController: UIViewController {
 		skipQuestionButton.backgroundColor = .darkGray
 		skipQuestionButton.layer.cornerRadius = 5
 	}
+	
+	
 }

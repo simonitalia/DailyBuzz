@@ -10,7 +10,7 @@ import UIKit
 
 extension QuestionViewController {
 	
-	//MARK: -  Player Score Helpers
+	//MARK: -  Player Helpers
 	
 	func playerAnswerSubmitted(with index: Int) {
 		let isAnswerCorrect = question.isAnswerIndexCorrect(for: index)
@@ -28,7 +28,7 @@ extension QuestionViewController {
 		presentAnswerVC(with: isAnswerCorrect)
 	}
 	
-	
+
 	func updatePlayerScoreLabel(with score: Int) {
 		
 		//convert score to string
@@ -47,15 +47,6 @@ extension QuestionViewController {
 		guard let questions = questions else { return }
 		let progressValue = Float(currentQuestionIndex) / Float(questions.count)
 		playerScoreProgressView.progress = progressValue
-	}
-	
-	
-	//MARK: - Question Helpers
-	
-	func getQuestion() {
-		question = questions?[questionIndex]
-		questionIndex += 1 //update question index to next question
-		updateUI()
 	}
 	
 	
@@ -91,9 +82,21 @@ extension QuestionViewController {
 		vc.headlineAnswer = createHeadlineAnswer()
 		vc.playerScore = playerScore
 		vc.isAnswerCorrect = isCorrect
+		vc.delegate = self //set self ass delegate to fetch new Qn on vc dismiss
 			
 		//presentVC
 		present(vc, animated: true, completion: nil)
+	}
+}
+
+//MARK: - Delegates
+
+extension QuestionViewController: AnswerViewControllerDelegate {
+	
+	func getQuestion() {
+		question = questions?[questionIndex]
+		questionIndex += 1 //update question index to next question
+		updateUI()
 	}
 }
 
