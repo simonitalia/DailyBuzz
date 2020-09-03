@@ -13,10 +13,6 @@ class QuestionViewController: UIViewController {
 	//MARK: - Class Properties
 	
 	enum Identifier {
-		enum Segue {
-            static let toAnswerVC = "QuestionVCToAnswerVC"
-        }
-		
 		enum Storyboard {
 			static let answerVC = "AnswerVC"
 		}

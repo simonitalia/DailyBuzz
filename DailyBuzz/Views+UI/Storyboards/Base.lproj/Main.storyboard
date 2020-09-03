@@ -206,17 +206,23 @@
                                         <state key="normal" title="Button">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="getQuestionButtonTapped:" destination="KBV-uB-RIc" eventType="touchUpInside" id="f02-0m-WR2"/>
+                                        </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mIV-58-WAB">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dgc-UI-EMb">
                                         <rect key="frame" x="0.0" y="60" width="335" height="50"/>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="cgi-2e-qdy"/>
+                                            <constraint firstAttribute="height" constant="50" id="1lK-ZA-ZEI"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="leaderboardButtonTapped:" destination="KBV-uB-RIc" eventType="touchUpInside" id="Rpt-na-Iu5"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUD-7a-toc">
@@ -228,6 +234,9 @@
                                 <state key="normal" title="Read Article &gt;">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="readArticleButtonTapped:" destination="KBV-uB-RIc" eventType="touchUpInside" id="SlN-Nu-hkP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -247,6 +256,14 @@
                         <viewLayoutGuide key="safeArea" id="DU7-22-vvK"/>
                     </view>
                     <navigationItem key="navigationItem" id="qxq-2W-2Uw"/>
+                    <connections>
+                        <outlet property="getQuestionButton" destination="bs9-D7-g7i" id="6Ci-6t-zCp"/>
+                        <outlet property="headlineImageView" destination="AzV-px-cun" id="cNJ-2U-nUp"/>
+                        <outlet property="headlineLabel" destination="qrS-C2-Vhy" id="1GP-36-yYq"/>
+                        <outlet property="leaderboardButton" destination="Dgc-UI-EMb" id="t7i-ex-Mmu"/>
+                        <outlet property="playerScoreLabel" destination="XqT-EI-NZs" id="C1v-y3-v8u"/>
+                        <outlet property="readArticleButton" destination="eUD-7a-toc" id="7TE-Zs-lnj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RK4-ff-83P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

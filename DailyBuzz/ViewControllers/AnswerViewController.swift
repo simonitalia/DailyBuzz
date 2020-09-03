@@ -15,11 +15,41 @@ protocol AnswerViewControllerDelegate {
 
 class AnswerViewController: UIViewController {
 	
-	var delegate: AnswerViewControllerDelegate!
+	//MARK: - Class Properties
 	
+	var delegate: AnswerViewControllerDelegate!
 	var headlineAnswer: DBHeadlineAnswer!
 	var playerScore: Int!
 	var isAnswerCorrect: Bool!
+	
+	
+	//MARK: - Storyboard IB Outlets / Actions
+	
+	//IB Outlets
+	@IBOutlet weak var playerScoreLabel: UILabel!
+	@IBOutlet weak var headlineImageView: UIImageView!
+	@IBOutlet weak var headlineLabel: UILabel!
+	@IBOutlet weak var readArticleButton: UIButton!
+	@IBOutlet weak var getQuestionButton: UIButton!
+	@IBOutlet weak var leaderboardButton: UIButton!
+	
+	//IB Actions
+	@IBAction func readArticleButtonTapped(_ sender: UIButton) {
+	}
+	
+	@IBAction func getQuestionButtonTapped(_ sender: UIButton) {
+		delegate.getQuestion()
+		dismiss(animated: true, completion: nil)
+	}
+	
+	@IBAction func leaderboardButtonTapped(_ sender: UIButton) {
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	//MARK: - View Lifecycyle
