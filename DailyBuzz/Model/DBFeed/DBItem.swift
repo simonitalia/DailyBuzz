@@ -22,7 +22,7 @@ struct DBItem: Codable, Error {
 	}
 	
 	
-	internal func fetchItemHeadlineImage(from urlString: String, completion: @escaping (Result<UIImage, DBError>) -> Void) {
+	func fetchItemHeadlineImage(from urlString: String, completion: @escaping (Result<UIImage, DBError>) -> Void) {
 		
 		let url = urlString.convertStringUrlToHTTPS()
 		let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -54,11 +54,16 @@ struct DBItem: Codable, Error {
 	}
 	
 	
-	internal func checkCorrectAnswerIndex(against index: Int) -> Bool {
+	func isAnswerIndexCorrect(for index: Int) -> Bool {
 		if correctAnswerIndex == index {
 			return true
 		} else {
 			return false
 		}
+	}
+	
+	
+	func getCorrectAnswerIndex() -> Int {
+		return correctAnswerIndex
 	}
 }

@@ -8,26 +8,28 @@
 
 import UIKit
 
-//MARK: - Game Logic Methods
-
 extension QuestionViewController {
 	
 	//MARK: -  Player Score Helpers
 	
-	internal func playerSubmittedAnswer(with index: Int) {
-		let isAnswerCorrect = question.checkCorrectAnswerIndex(against: index)
+	func playerAnswerSubmitted(with index: Int) {
+		let isAnswerCorrect = question.isAnswerIndexCorrect(for: index)
 		
 		if isAnswerCorrect {
 			playerScore += 2
-		
+			
 		} else {
-			guard playerScore != 0 else { return } //guard player score from going into negative
-			playerScore -= 1
+			if playerScore > 0 { //guard player score from going into negative
+				playerScore -= 1
+			}
 		}
+		
+		//present answerVC
+		presentAnswerVC(with: isAnswerCorrect)
 	}
 	
 	
-	internal func updatePlayerScoreLabel(with score: Int) {
+	func updatePlayerScoreLabel(with score: Int) {
 		
 		//convert score to string
 		let stringScore = String(score)
@@ -41,7 +43,7 @@ extension QuestionViewController {
 	}
 	
 	
-	internal func updatePlayerProgressBar(with currentQuestionIndex: Int) {
+	func updatePlayerProgressBar(with currentQuestionIndex: Int) {
 		guard let questions = questions else { return }
 		let progressValue = Float(currentQuestionIndex) / Float(questions.count)
 		playerScoreProgressView.progress = progressValue
@@ -50,21 +52,48 @@ extension QuestionViewController {
 	
 	//MARK: - Question Helpers
 	
-	internal func getNextQuestion() {
+	func getQuestion() {
 		question = questions?[questionIndex]
-		questionIndex += 1
+		questionIndex += 1 //update question index to next question
 		updateUI()
 	}
 	
 	
 	//MARK: - UI Helpers
 	
+	//Show Question
 	private func updateUI() {
 		DispatchQueue.main.async { [weak self] in
 			guard let self = self else { return }
 			self.getQuestionHeadlineImage()
 			self.congifureAnswerButtons()
 		}
+	}
+	
+	
+	private func createHeadlineAnswer() -> DBHeadlineAnswer {
+		
+		//create player answer object
+		let headline = question.headlines[question.correctAnswerIndex]
+		let storyURL = question.storyUrl
+		let image = headlineImageView.image
+		
+		return DBHeadlineAnswer(headlineImage: image, headline: headline, storyUrl: storyURL)
+	}
+	
+
+	//MARK: - Navigation
+	
+	private func presentAnswerVC(with isCorrect: Bool) {
+		
+		//setup destinationVC
+		let vc = self.storyboard?.instantiateViewController(withIdentifier: Identifier.Storyboard.answerVC) as! AnswerViewController
+		vc.headlineAnswer = createHeadlineAnswer()
+		vc.playerScore = playerScore
+		vc.isAnswerCorrect = isCorrect
+			
+		//presentVC
+		present(vc, animated: true, completion: nil)
 	}
 }
 

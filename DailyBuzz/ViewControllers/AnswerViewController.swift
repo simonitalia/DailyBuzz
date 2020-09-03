@@ -10,14 +10,13 @@ import UIKit
 
 class AnswerViewController: UIViewController {
 	
+	var headlineAnswer: DBHeadlineAnswer!
+	var playerScore: Int!
+	var isAnswerCorrect: Bool!
 	
-
     override func viewDidLoad() {
         super.viewDidLoad()
-		
-		
 
-       
     }
 
 

@@ -161,7 +161,28 @@
                     <view key="view" contentMode="scaleToFill" id="GGO-GN-Rah">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxZ-W0-4eW">
+                                <rect key="frame" x="164" y="555" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqT-EI-NZs">
+                                <rect key="frame" x="112.5" y="20" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="YfW-8l-akw"/>
+                                    <constraint firstAttribute="height" constant="150" id="cVq-Yz-y5j"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="XqT-EI-NZs" firstAttribute="centerX" secondItem="DU7-22-vvK" secondAttribute="centerX" id="06W-xk-oOt"/>
+                            <constraint firstItem="XqT-EI-NZs" firstAttribute="top" secondItem="DU7-22-vvK" secondAttribute="top" constant="20" id="yGJ-Zx-Hvl"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="DU7-22-vvK"/>
                     </view>
                     <navigationItem key="navigationItem" id="qxq-2W-2Uw"/>

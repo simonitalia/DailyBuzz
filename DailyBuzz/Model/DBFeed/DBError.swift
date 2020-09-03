@@ -17,6 +17,9 @@ enum DBError: String, Error {
 	
 	//local / json file errors
 	case fileError = "Could not load questions. Please try again."
+	
+	//image missing
+	case missingImage = "Headline image is missing."
 }
 
 

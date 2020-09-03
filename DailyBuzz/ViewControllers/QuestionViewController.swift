@@ -12,28 +12,40 @@ class QuestionViewController: UIViewController {
 	
 	//MARK: - Class Properties
 	
+	enum Identifier {
+		enum Segue {
+            static let toAnswerVC = "QuestionVCToAnswerVC"
+        }
+		
+		enum Storyboard {
+			static let answerVC = "AnswerVC"
+		}
+    }
+	
 	private var spinner: ActivityIndicatorViewController!
 	
 	//question tracking
-	internal var question: DBItem!
+	var question: DBItem!
 	
-	internal var questions: [DBItem]? {
+	var questions: [DBItem]? {
 		didSet {
 			configureUI()
 		}
 	}
 	
-	internal var questionIndex = 0  {
+	var questionIndex = 0  {
 	   didSet {
 		   updatePlayerProgressBar(with: questionIndex)
 	   }
 	}
 	
-	internal var playerScore = 0 {
+	var playerScore = 0 {
 		didSet {
 			updatePlayerScoreLabel(with: playerScore)
 		}
 	}
+	
+	var headlineAnswer: DBHeadlineAnswer! 
 	
 	
 	//MARK: - Storyboard IB Outlets / Actions
@@ -48,12 +60,12 @@ class QuestionViewController: UIViewController {
 	
 	//IB Actions
 	@IBAction func skipQuestionButtonTapped(_ sender: Any) {
-		getNextQuestion()
+		getQuestion()
 	}
 	
 	
 	@IBAction func answerButtonTapped(_ sender: UIButton) {
-		playerSubmittedAnswer(with: sender.tag)
+		playerAnswerSubmitted(with: sender.tag)
 	}
 	
 	
@@ -111,8 +123,8 @@ class QuestionViewController: UIViewController {
 			self.updatePlayerScoreLabel(with: 0)
 			self.configureSkipQuestionButton()
 			
-			//load question
-			self.getNextQuestion()
+			//get question
+			self.getQuestion()
 		}
 	}
 	
@@ -139,7 +151,7 @@ class QuestionViewController: UIViewController {
 	}
 	
 	
-	@objc internal func getQuestionHeadlineImage() {
+	@objc func getQuestionHeadlineImage() {
 		
 		//start activity view
 		headlineActivityIndicator(show: true)
@@ -171,7 +183,7 @@ class QuestionViewController: UIViewController {
 	}
 	
 	
-	internal func congifureAnswerButtons() {
+	func congifureAnswerButtons() {
 		guard let question = question else { return }
 		
 		//configure button presentation
