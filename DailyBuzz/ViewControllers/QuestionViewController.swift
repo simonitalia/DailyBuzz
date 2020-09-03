@@ -70,12 +70,18 @@ class QuestionViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		getGameQuestions()
-		hideViews(true)
+		configureVC()
 	}
 	
 	
 	//MARK: - Initial VC Setup
+	
+	private func configureVC() {
+		getGameQuestions()
+		hideViews(true)
+		configureNavigationBar()
+	}
+	
 	
 	@objc func getGameQuestions() {
 		
@@ -105,7 +111,7 @@ class QuestionViewController: UIViewController {
 	}
 	
 	
-	//MARK: - UI Setup
+	//MARK: - Setup UI
 	
 	//triggered after Questions are fetched
 	private func configureUI() {
@@ -113,7 +119,6 @@ class QuestionViewController: UIViewController {
 			guard let self = self else { return }
 			
 			//configure UI elements
-			self.configureNavigationBar()
 			self.configureHeadlineImageView()
 			self.configurePlayerScoreProgressView()
 			self.updatePlayerScoreLabel(with: 0)

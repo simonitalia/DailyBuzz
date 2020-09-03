@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--Question View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="QuestionViewController" customModule="DailyBuzz" customModuleProvider="target" sceneMemberID="viewController">
@@ -146,7 +146,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="w44-eM-JEr"/>
+                    <navigationItem key="navigationItem" id="w44-eM-JEr"/>
                     <connections>
                         <outlet property="headlineImageActivityIndicator" destination="f5P-1b-3y4" id="bG5-rb-CeQ"/>
                         <outlet property="headlineImageView" destination="GX1-l0-mep" id="X3B-6V-aZw"/>
@@ -289,9 +289,12 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AdP-En-Q9A" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gbF-FC-sad">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="gbF-FC-sad">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -22,7 +22,6 @@ class AnswerViewController: UIViewController {
 	var playerScore: Int!
 	var isAnswerCorrect: Bool!
 	
-	
 	//MARK: - Storyboard IB Outlets / Actions
 	
 	//IB Outlets
@@ -53,13 +52,9 @@ class AnswerViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		configureplayerScoreLabel()
-		configureHeadlineImageView()
-		configureHeadlineLabel()
-		configureReadArticleButton()
-		configureGetQuestionButton()
-		configureLeaderboardButton()
+		configureVC()
     }
+	
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
@@ -67,7 +62,19 @@ class AnswerViewController: UIViewController {
 	}
 	
 	
-	//MARK: - UI Setup
+	//MARK: - Initial VC Setup
+	
+	private func configureVC() {
+		configureplayerScoreLabel()
+		configureHeadlineImageView()
+		configureHeadlineLabel()
+		configureReadArticleButton()
+		configureGetQuestionButton()
+		configureLeaderboardButton()
+	}
+	
+	
+	//MARK: - Setup UI
 	
 	private func configureplayerScoreLabel() {
 		
