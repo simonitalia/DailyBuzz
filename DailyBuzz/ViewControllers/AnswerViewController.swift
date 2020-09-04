@@ -13,6 +13,7 @@ protocol AnswerViewControllerDelegate {
 	func getQuestion()
 }
 
+@IBDesignable
 class AnswerViewController: UIViewController {
 	
 	//MARK: - Class Properties
@@ -88,7 +89,7 @@ class AnswerViewController: UIViewController {
 		playerScoreLabel.attributedText = attributedText
 		
 		//configure label
-		playerScoreLabel.layer.cornerRadius = playerScoreLabel.frame.width / 2
+		playerScoreLabel.makeCircle()
 		playerScoreLabel.layer.borderWidth = 3
 		playerScoreLabel.layer.backgroundColor = UIColor.systemGreen.cgColor
 		playerScoreLabel.layer.borderColor = UIColor.white.cgColor

@@ -8,7 +8,7 @@
 
 import Foundation
 
-//custom user friendly error defintions
+//custom, user friendly error definition
 enum DBError: String, Error {
 	
 	//remote network errors

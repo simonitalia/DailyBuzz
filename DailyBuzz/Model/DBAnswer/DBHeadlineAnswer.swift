@@ -8,7 +8,7 @@
 
 import UIKit
 
-//Item anwer object definition
+//Item / Headline Answer object definition
 struct DBHeadlineAnswer {
 	var headlineImage: UIImage?
 	var headline: String

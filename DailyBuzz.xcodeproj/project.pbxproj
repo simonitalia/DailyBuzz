@@ -14,7 +14,6 @@
 		2A1319B224FDDE5F0019C649 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1319B124FDDE5F0019C649 /* Assets.xcassets */; };
 		2A1319B524FDDE5F0019C649 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1319B324FDDE5F0019C649 /* LaunchScreen.storyboard */; };
 		2A1319C224FDEA490019C649 /* DBNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1319C124FDEA490019C649 /* DBNetworkController.swift */; };
-		2A1319C424FDEA7F0019C649 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1319C324FDEA7F0019C649 /* DataPersistenceManager.swift */; };
 		2A1319C624FDF04B0019C649 /* DBItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1319C524FDF04B0019C649 /* DBItem.swift */; };
 		2A1319C824FDF1450019C649 /* DBFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1319C724FDF1450019C649 /* DBFeed.swift */; };
 		2A1319CD24FE09C00019C649 /* UIViewController.+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1319CC24FE09C00019C649 /* UIViewController.+Extension.swift */; };
@@ -27,6 +26,7 @@
 		2A78FE8724FF6D9400DAA091 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78FE8624FF6D9400DAA091 /* String+Extension.swift */; };
 		2A78FE8B24FF7A5D00DAA091 /* QuestionViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78FE8A24FF7A5D00DAA091 /* QuestionViewController+Extension.swift */; };
 		2A78FE8D24FF9E1600DAA091 /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78FE8C24FF9E1600DAA091 /* AnswerViewController.swift */; };
+		2AB15AF42501D0DC00C3B70B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB15AF32501D0DC00C3B70B /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +39,6 @@
 		2A1319B424FDDE5F0019C649 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A1319B624FDDE5F0019C649 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A1319C124FDEA490019C649 /* DBNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBNetworkController.swift; sourceTree = "<group>"; };
-		2A1319C324FDEA7F0019C649 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		2A1319C524FDF04B0019C649 /* DBItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBItem.swift; sourceTree = "<group>"; };
 		2A1319C724FDF1450019C649 /* DBFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBFeed.swift; sourceTree = "<group>"; };
 		2A1319CC24FE09C00019C649 /* UIViewController.+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController.+Extension.swift"; sourceTree = "<group>"; };
@@ -52,6 +51,7 @@
 		2A78FE8624FF6D9400DAA091 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		2A78FE8A24FF7A5D00DAA091 /* QuestionViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestionViewController+Extension.swift"; sourceTree = "<group>"; };
 		2A78FE8C24FF9E1600DAA091 /* AnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
+		2AB15AF32501D0DC00C3B70B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				2A1319D224FF1F970019C649 /* Storyboards */,
+				2AB15AF22501D09700C3B70B /* Extensions */,
 			);
 			path = "Views+UI";
 			sourceTree = "<group>";
@@ -158,7 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				2A1319C124FDEA490019C649 /* DBNetworkController.swift */,
-				2A1319C324FDEA7F0019C649 /* DataPersistenceManager.swift */,
 			);
 			path = DBControllers;
 			sourceTree = "<group>";
@@ -193,6 +193,14 @@
 			isa = PBXGroup;
 			children = (
 				2A78FE8624FF6D9400DAA091 /* String+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2AB15AF22501D09700C3B70B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2AB15AF32501D0DC00C3B70B /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -272,6 +280,7 @@
 			files = (
 				2A1319D124FE2D810019C649 /* DBError.swift in Sources */,
 				2A78FE8724FF6D9400DAA091 /* String+Extension.swift in Sources */,
+				2AB15AF42501D0DC00C3B70B /* UIView+Extension.swift in Sources */,
 				2A1319C224FDEA490019C649 /* DBNetworkController.swift in Sources */,
 				2A1319AD24FDDE5D0019C649 /* QuestionViewController.swift in Sources */,
 				2A1319A924FDDE5D0019C649 /* AppDelegate.swift in Sources */,
@@ -281,7 +290,6 @@
 				2A78FE8D24FF9E1600DAA091 /* AnswerViewController.swift in Sources */,
 				2A25EA0A2500F085009B97DE /* Constants.swift in Sources */,
 				2A1319C624FDF04B0019C649 /* DBItem.swift in Sources */,
-				2A1319C424FDEA7F0019C649 /* DataPersistenceManager.swift in Sources */,
 				2A78FE8B24FF7A5D00DAA091 /* QuestionViewController+Extension.swift in Sources */,
 				2A1319CD24FE09C00019C649 /* UIViewController.+Extension.swift in Sources */,
 				2A1319C824FDF1450019C649 /* DBFeed.swift in Sources */,
@@ -431,6 +439,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3KZZ5Z37DJ;
 				INFOPLIST_FILE = DailyBuzz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -449,6 +458,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3KZZ5Z37DJ;
 				INFOPLIST_FILE = DailyBuzz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

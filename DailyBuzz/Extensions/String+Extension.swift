@@ -10,7 +10,7 @@ import UIKit
 
 extension String {
 	
-
+	//convert http urlString to policy compliant HTTPS Url
 	func convertStringUrlToHttpsUrl() -> URL {
 		let url = URL(string: self)!
 		var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
@@ -19,6 +19,7 @@ extension String {
 	}
 	
 	
+	//convert string to attributedString with applied attribute/s
 	func convertToAttributedText(size: CGFloat, location: Int, length: Int) -> NSMutableAttributedString {
 		let attributedText = NSMutableAttributedString(string: self)
 		let bold = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: size)]
