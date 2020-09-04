@@ -1,6 +1,7 @@
 # DailyBuzz
 * This app is a simple daily sports news game, where players are given a headline image and need to pick the corresponding tag line from 3 possible options.
 * There are around 615 questions, and players are shown a porgress bar indicating their overall progress, as well as their current cummulative score.
+* After answering a questions, pleayers will be shown an Answers page where they can see if thier answer was correct or not, and also be given an opportunity to open the healdine article to read the full story.
 
 ### Earning Points
 Players earn (or lose) points) follows:
