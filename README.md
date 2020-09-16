@@ -10,6 +10,9 @@ Players earn (or lose) points) as follows:
 * 0 points for skipping question
 * Note! Player score won't dip below 0.
 
+# Demo
+![Demo](BuzzFeedDemo-trimmed_10092020.gif)
+
 ## Device / OS Support
 * App requires an iPhone capable of running iOS 13.0 or later. (iPad not supported).
 
